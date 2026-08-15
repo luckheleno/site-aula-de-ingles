@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher Ju — English Notebook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Kalam:wght@400;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #f7f3e8;
+    --paper-line: #d8d0ba;
+    --margin-red: #c1443b;
+    --ink: #2f4b7c;
+    --ink-dark: #1f3a63;
+    --ink-soft: #5a7099;
+    --graphite: #2c2c2c;
+    --highlight: #f4d35e;
+    --white: #fffdf7;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--graphite);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.5;
+  }
+
+  /* ruled paper texture on whole page */
+  body{
+    background-image:
+      linear-gradient(var(--paper-line) 1px, transparent 1px);
+    background-size: 100% 34px;
+    background-position: 0 120px;
+  }
+
+  .binding{
+    position:fixed;
+    top:0; left:0; bottom:0;
+    width:34px;
+    background: repeating-linear-gradient(
+      var(--paper),
+      var(--paper) 26px,
+      #cfc6ab 26px,
+      #cfc6ab 30px
+    );
+    z-index:5;
+    border-right:1px solid #cbc2a6;
+  }
+  .binding::before{
+    content:"";
+    position:absolute;
+    left:14px; top:0; bottom:0;
+    width:1px;
+    background: repeating-linear-gradient(#b7ac89, #b7ac89 4px, transparent 4px, transparent 30px);
+  }
+  .binding .hole{
+    position:absolute;
+    left:9px;
+    width:11px; height:11px;
+    border-radius:50%;
+    background:var(--paper);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.35);
+  }
+
+  main, header, footer{ margin-left:34px; }
+
+  a{color:var(--ink);}
+
+  .wrap{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* margin red line, like notebook */
+  .wrap{
+    position:relative;
+  }
+  .wrap::before{
+    content:"";
+    position:absolute;
+    top:0; bottom:0; left:78px;
+    width:1px;
+    background:rgba(193,68,59,.35);
+    pointer-events:none;
+  }
+  @media (max-width:700px){ .wrap::before{ display:none; } }
+
+  section{ padding:76px 0 36px; }
+  .rule-top{ border-top:1.5px solid #c8bf9f; padding-top:40px; }
+
+  h1,h2,h3{
+    font-family:'Caveat', cursive;
+    font-weight:700;
+    color:var(--ink-dark);
+    margin:0 0 8px;
+  }
+
+  .eyebrow{
+    font-family:'Kalam', cursive;
+    font-size:0.85rem;
+    color:var(--margin-red);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:6px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:16px; height:1px;
+    background:var(--margin-red);
+    display:inline-block;
+  }
+
+  p{ color:#4a4a44; }
+
+  .highlight{
+    background: linear-gradient(120deg, var(--highlight) 0%, var(--highlight) 100%);
+    background-repeat:no-repeat;
+    background-size:100% 40%;
+    background-position:0 88%;
+    padding:0 2px;
+  }
+
+  /* ============ HEADER / HERO ============ */
+  header{
+    padding-top:26px;
+  }
+  .navbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 0;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Caveat', cursive;
+    font-size:1.7rem;
+    font-weight:700;
+    color:var(--ink-dark);
+    text-decoration:none;
+  }
+  .logo-mark{
+    width:42px; height:42px;
+    border-radius:50%;
+    border:2px solid var(--ink-dark);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Kalam',cursive;
+    font-weight:700;
+    color:var(--ink-dark);
+    font-size:1rem;
+    background:var(--white);
+    transform:rotate(-4deg);
+  }
+  .navlinks{
+    display:flex; gap:26px;
+    list-style:none; margin:0; padding:0;
+    font-family:'Kalam', cursive;
+    font-size:0.95rem;
+  }
+  .navlinks a{ text-decoration:none; color:var(--graphite); }
+  .navlinks a:hover{ color:var(--margin-red); }
+  .btn-book{
+    font-family:'Kalam',cursive;
+    background:var(--ink-dark);
+    color:var(--white);
+    border:none;
+    padding:10px 18px;
+    border-radius:3px;
+    cursor:pointer;
+    box-shadow:2px 2px 0 var(--margin-red);
+    transform:rotate(-0.5deg);
+  }
+  .btn-book:hover{ transform:translate(1px,1px) rotate(-0.5deg); box-shadow:1px 1px 0 var(--margin-red);}
+
+  .hero{
+    padding:56px 0 60px;
+    display:grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap:40px;
+    align-items:center;
+  }
+  .hero-note{
+    background:var(--white);
+    border:1.5px solid #d9d1b3;
+    border-radius:2px;
+    padding:34px 32px;
+    box-shadow:5px 5px 0 rgba(47,75,124,0.08);
+    position:relative;
+  }
+  .hero-note::after{
+    content:"post-it";
+    display:none;
+  }
+  .sticky-tag{
+    position:absolute;
+    top:-16px; right:26px;
+    background:var(--highlight);
+    padding:6px 14px;
+    font-family:'Kalam',cursive;
+    font-size:0.82rem;
+    transform:rotate(3deg);
+    box-shadow:1px 2px 4px rgba(0,0,0,.15);
+  }
+  .hero h1{
+    font-size:3.2rem;
+    line-height:1.05;
+    margin-bottom:14px;
+  }
+  .hero p.lead{
+    font-size:1.08rem;
+    max-width:44ch;
+    margin-bottom:26px;
+  }
+  .hero-cta{
+    display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .btn-primary{
+    font-family:'Kalam',cursive;
+    background:var(--margin-red);
+    color:var(--white);
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:3px;
+    box-shadow:3px 3px 0 var(--ink-dark);
+  }
+  .btn-primary:hover{ transform:translate(1px,1px); box-shadow:2px 2px 0 var(--ink-dark);}
+  .btn-ghost{
+    font-family:'Kalam',cursive;
+    color:var(--ink-dark);
+    text-decoration:none;
+    padding:12px 8px;
+    border-bottom:2px dashed var(--ink-dark);
+  }
+
+  .todo-list{
+    list-style:none; margin:26px 0 0; padding:0;
+    font-family:'Kalam',cursive;
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .todo-list li{
+    display:flex; align-items:flex-start; gap:10px;
+    font-size:1rem;
+  }
+  .todo-list .check{
+    width:18px; height:18px; margin-top:2px;
+    border:2px solid var(--ink);
+    border-radius:3px;
+    flex:none;
+    position:relative;
+  }
+  .todo-list .check::after{
+    content:"✓";
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--margin-red);
+    font-size:13px;
+    font-weight:700;
+  }
+
+  .hero-visual{
+    position:relative;
+  }
+  .polaroid{
+    background:var(--white);
+    padding:12px 12px 44px;
+    box-shadow:0 10px 24px rgba(0,0,0,.14);
+    transform:rotate(4deg);
+    max-width:300px;
+    margin:0 auto;
+  }
+  .polaroid .img-box{
+    width:100%; aspect-ratio: 4/5;
+    background:
+      repeating-linear-gradient(135deg, #e6dfc7, #e6dfc7 8px, #ded5b8 8px, #ded5b8 16px);
+    display:flex; align-items:center; justify-content:center;
+    color:#8d846a;
+    font-family:'Kalam',cursive;
+    font-size:0.9rem;
+  }
+  .polaroid figcaption{
+    font-family:'Caveat',cursive;
+    font-size:1.15rem;
+    text-align:center;
+    margin-top:10px;
+    color:var(--ink-dark);
+  }
+  .badge-circle{
+    position:absolute;
+    top:-18px; left:-22px;
+    width:96px; height:96px;
+    border-radius:50%;
+    border:2px dashed var(--margin-red);
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    font-family:'Kalam',cursive;
+    font-size:0.78rem;
+    color:var(--margin-red);
+    line-height:1.2;
+    transform:rotate(-8deg);
+    background:var(--paper);
+  }
+
+  /* ============ SECTION HEADERS ============ */
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:20px;
+    margin-bottom:34px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{ font-size:2.4rem; margin:0; }
+  .tab-number{
+    font-family:'Kalam',cursive;
+    color:var(--ink-soft);
+    font-size:0.95rem;
+  }
+
+  /* ============ GRADE DE AULAS ============ */
+  .grade-toolbar{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:22px;
+  }
+  .grade-status{
+    font-family:'Kalam',cursive;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+  }
+  .btn-small{
+    font-family:'Kalam',cursive;
+    font-size:0.85rem;
+    background:var(--white);
+    border:1.5px solid var(--ink-dark);
+    color:var(--ink-dark);
+    padding:8px 14px;
+    border-radius:3px;
+    cursor:pointer;
+  }
+  .btn-small.primary{
+    background:var(--ink-dark);
+    color:var(--white);
+  }
+  .btn-small.danger{
+    border-color:var(--margin-red);
+    color:var(--margin-red);
+  }
+  .grade-wrap{
+    overflow-x:auto;
+    background:var(--white);
+    border:1.5px solid #d9d1b3;
+    box-shadow:4px 4px 0 rgba(47,75,124,0.06);
+    border-radius:2px;
+  }
+  table.grade{
+    width:100%;
+    border-collapse:collapse;
+    min-width:680px;
+  }
+  table.grade th, table.grade td{
+    border:1px solid #e3dcc4;
+    padding:10px 12px;
+    text-align:left;
+    font-size:0.92rem;
+    vertical-align:middle;
+  }
+  table.grade thead th{
+    font-family:'Kalam',cursive;
+    background:#f1ead2;
+    color:var(--ink-dark);
+    font-weight:700;
+    position:sticky; top:0;
+  }
+  table.grade td.time-col{
+    font-family:'Kalam',cursive;
+    color:var(--margin-red);
+    white-space:nowrap;
+    background:#fbf8ee;
+  }
+  table.grade td.cell[contenteditable="true"]{
+    cursor:text;
+    outline:none;
+  }
+  table.grade td.cell[contenteditable="true"]:focus{
+    background:#fff6cf;
+  }
+  table.grade td.cell:empty::before{
+    content:"livre";
+    color:#b7ac89;
+    font-style:italic;
+  }
+  .grade-note{
+    font-family:'Kalam',cursive;
+    font-size:0.8rem;
+    color:var(--ink-soft);
+    margin-top:12px;
+  }
+  .grade-note code{
+    background:#efe8d1;
+    padding:1px 5px;
+    border-radius:3px;
+    font-family:monospace;
+    font-size:0.85em;
+  }
+
+  .grade-modal-overlay{
+    position:fixed; inset:0;
+    background:rgba(31,58,99,0.45);
+    display:flex; align-items:center; justify-content:center;
+    z-index:50;
+    padding:20px;
+  }
+  .grade-modal{
+    background:var(--white);
+    border:1.5px solid #d9d1b3;
+    border-radius:4px;
+    max-width:640px;
+    width:100%;
+    padding:26px 26px 20px;
+    box-shadow:6px 6px 0 rgba(47,75,124,0.18);
+  }
+  .grade-modal h3{
+    margin:0 0 10px;
+    font-size:1.6rem;
+  }
+  .grade-modal p{
+    font-size:0.88rem;
+    margin:0 0 14px;
+  }
+  .grade-modal p code{
+    background:#efe8d1;
+    padding:1px 5px;
+    border-radius:3px;
+    font-family:monospace;
+    font-size:0.85em;
+  }
+  #grade-code-output{
+    width:100%;
+    height:220px;
+    font-family:monospace;
+    font-size:0.82rem;
+    padding:12px;
+    border:1.5px solid #d9d1b3;
+    border-radius:3px;
+    background:#fbf8ee;
+    color:#2c2c2c;
+    resize:vertical;
+  }
+  .grade-modal-actions{
+    display:flex; align-items:center; gap:12px;
+    margin-top:14px;
+  }
+
+  /* ============ CLASS MATERIAL ============ */
+  .material-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr) 1.3fr;
+    gap:20px;
+  }
+  .material-card{
+    background:var(--white);
+    border:1.5px solid #d9d1b3;
+    border-radius:2px;
+    padding:22px 18px;
+    display:flex; flex-direction:column; gap:10px;
+    text-decoration:none;
+    color:var(--graphite);
+    transition:transform .15s ease, box-shadow .15s ease;
+    box-shadow:3px 3px 0 rgba(47,75,124,0.06);
+  }
+  .material-card:hover{ transform:translate(-2px,-2px); box-shadow:5px 5px 0 rgba(47,75,124,0.14); }
+  .material-icon{
+    width:38px; height:38px;
+    border:2px solid var(--ink-dark);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Kalam',cursive;
+    font-weight:700;
+    color:var(--ink-dark);
+  }
+  .material-card h3{ font-size:1.5rem; margin:0; }
+  .material-card p{ font-size:0.88rem; margin:0; color:#6b6558; }
+  .material-photo{
+    grid-row: span 1;
+    background:
+      repeating-linear-gradient(45deg, #e9e2c9, #e9e2c9 10px, #e1d8bb 10px, #e1d8bb 20px);
+    border-radius:2px;
+    border:1.5px solid #d9d1b3;
+    display:flex; align-items:flex-end;
+    padding:16px;
+  }
+  .material-photo span{
+    font-family:'Caveat',cursive;
+    font-size:1.3rem;
+    color:var(--ink-dark);
+    background:rgba(255,253,247,.75);
+    padding:2px 10px;
+    border-radius:2px;
+  }
+
+  @media (max-width:900px){
+    .material-grid{ grid-template-columns: repeat(3,1fr); }
+    .material-photo{ grid-column: span 3; aspect-ratio:16/6; }
+  }
+  @media (max-width:560px){
+    .material-grid{ grid-template-columns: 1fr 1fr; }
+    .material-photo{ grid-column:span 2; }
+  }
+
+  /* ============ ACTIVITIES ============ */
+  .activities{
+    display:grid;
+    grid-template-columns: 0.9fr 1.6fr;
+    gap:34px;
+    align-items:center;
+  }
+  .activities-photo{
+    aspect-ratio: 4/5;
+    background: repeating-linear-gradient(90deg, #e6dfc7, #e6dfc7 3px, transparent 3px, transparent 34px), var(--paper-line);
+    background-color:#efe8d1;
+    border:1.5px solid #d9d1b3;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Kalam',cursive;
+    color:#8d846a;
+    transform:rotate(-2deg);
+  }
+  .activity-cards{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:18px;
+  }
+  .activity-card{
+    background:var(--white);
+    border:1.5px solid #d9d1b3;
+    padding:20px 16px 22px;
+    text-align:center;
+    position:relative;
+    box-shadow:3px 3px 0 rgba(193,68,59,0.08);
+  }
+  .activity-card .stamp{
+    font-family:'Kalam',cursive;
+    font-size:0.7rem;
+    color:var(--margin-red);
+    border:1.5px solid var(--margin-red);
+    border-radius:50%;
+    width:44px; height:44px;
+    display:flex; align-items:center; justify-content:center;
+    margin:0 auto 12px;
+    transform:rotate(-6deg);
+  }
+  .activity-card h3{ font-size:1.4rem; margin-bottom:6px; }
+  .activity-card p{ font-size:0.85rem; margin:0; }
+  @media (max-width:900px){
+    .activities{ grid-template-columns:1fr; }
+    .activities-photo{ max-width:220px; margin:0 auto; }
+  }
+  @media (max-width:560px){
+    .activity-cards{ grid-template-columns:1fr; }
+  }
+
+  /* ============ BLOG + ABOUT ============ */
+  .split{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:0;
+  }
+  .split > div{ padding:0 26px; }
+  .split > div:first-child{ padding-left:0; border-right:1.5px solid #c8bf9f; }
+  @media (max-width:800px){
+    .split{ grid-template-columns:1fr; }
+    .split > div:first-child{ border-right:none; border-bottom:1.5px solid #c8bf9f; padding-bottom:34px; margin-bottom:34px;}
+    .split > div{ padding-left:0; }
+  }
+
+  .blog-photo{
+    width:100%; aspect-ratio:16/10;
+    background:repeating-linear-gradient(60deg,#e9e2c9,#e9e2c9 9px,#e1d8bb 9px,#e1d8bb 18px);
+    border:1.5px solid #d9d1b3;
+    margin-bottom:18px;
+  }
+  .post-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:16px;}
+  .post-list li{ border-bottom:1px dashed #cbc2a6; padding-bottom:14px; }
+  .post-list a{ text-decoration:none; font-weight:600; color:var(--ink-dark); }
+  .post-list .meta{ font-family:'Kalam',cursive; color:var(--margin-red); font-size:0.8rem; }
+
+  .about-photo{
+    width:180px; aspect-ratio:4/5;
+    background:repeating-linear-gradient(135deg,#e6dfc7,#e6dfc7 8px,#ded5b8 8px,#ded5b8 16px);
+    border:1.5px solid #d9d1b3;
+    float:left;
+    margin:4px 20px 10px 0;
+    transform:rotate(-3deg);
+  }
+  .signature{
+    font-family:'Caveat',cursive;
+    font-size:1.8rem;
+    color:var(--ink-dark);
+    margin-top:18px;
+  }
+
+  footer{
+    padding:46px 0 60px;
+    text-align:center;
+  }
+  footer .logo{ justify-content:center; margin-bottom:14px; }
+  footer p{ font-family:'Kalam',cursive; font-size:0.85rem; }
+
+  /* mobile nav simplification */
+  @media (max-width:760px){
+    .navlinks{ display:none; }
+    .hero{ grid-template-columns:1fr; }
+    .hero-visual{ order:-1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="binding" aria-hidden="true">
+  <div class="hole" style="top:60px"></div>
+  <div class="hole" style="top:260px"></div>
+  <div class="hole" style="top:460px"></div>
+  <div class="hole" style="top:660px"></div>
+  <div class="hole" style="top:860px"></div>
+  <div class="hole" style="top:1060px"></div>
+  <div class="hole" style="top:1260px"></div>
+  <div class="hole" style="top:1460px"></div>
+  <div class="hole" style="top:1660px"></div>
+</div>
+
+<header>
+  <div class="wrap">
+    <nav class="navbar">
+      <a href="#top" class="logo">
+        <span class="logo-mark">Ju</span>
+        Teacher Ju
+      </a>
+      <ul class="navlinks">
+        <li><a href="#grade">Grade de aulas</a></li>
+        <li><a href="#material">Class Material</a></li>
+        <li><a href="#activities">Activities</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#about">About me</a></li>
+      </ul>
+      <button class="btn-book">Marcar aula</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap" style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:40px; align-items:center;">
+      <div class="hero-note">
+        <span class="sticky-tag">aula particular</span>
+        <span class="eyebrow">Hello!</span>
+        <h1>How can I help<br>you today?</h1>
+        <p class="lead">Aulas particulares de inglês pensadas pra você: material próprio, acompanhamento de verdade e um plano feito sob medida — não um curso de prateleira.</p>
+        <div class="hero-cta">
+          <a href="#material" class="btn-primary">Ver grade de aulas</a>
+          <a href="#about" class="btn-ghost">Conhecer a teacher</a>
+        </div>
+        <ul class="todo-list">
+          <li><span class="check"></span> Grade de aulas</li>
+          <li><span class="check"></span> Plano de estudos personalizado</li>
+          <li><span class="check"></span> Link das aulas</li>
+        </ul>
+      </div>
+      <div class="hero-visual">
+        <div class="badge-circle">100%<br>online</div>
+        <figure class="polaroid">
+          <div class="img-box">foto da teacher</div>
+          <figcaption>class time :)</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRADE DE AULAS -->
+  <section id="grade" class="rule-top">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">unit 00</span>
+          <h2>Grade de aulas</h2>
+        </div>
+        <span class="tab-number">edite e salve — atualiza na hora</span>
+      </div>
+
+      <div class="grade-toolbar">
+        <button class="btn-small primary" id="btn-edit">Editar grade</button>
+        <button class="btn-small" id="btn-save" style="display:none;">Salvar grade</button>
+        <button class="btn-small danger" id="btn-cancel" style="display:none;">Cancelar</button>
+        <span class="grade-status" id="grade-status">grade carregada do código</span>
+      </div>
+
+      <div class="grade-wrap">
+        <table class="grade" id="grade-table">
+          <thead>
+            <tr>
+              <th>Horário</th>
+              <th>Segunda</th>
+              <th>Terça</th>
+              <th>Quarta</th>
+              <th>Quinta</th>
+              <th>Sexta</th>
+              <th>Sábado</th>
+            </tr>
+          </thead>
+          <tbody id="grade-body">
+            <!-- linhas geradas via JS, a partir de GRADE_DATA -->
+          </tbody>
+        </table>
+      </div>
+      <p class="grade-note">Clique em "Editar grade", escreva o nome do aluno (ou deixe em branco pra "livre") em cada horário e depois em "Salvar grade". A mudança é salva automaticamente neste navegador.</p>
+    </div>
+  </section>
+
+  <!-- CLASS MATERIAL -->
+  <section id="material" class="rule-top">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">unit 01</span>
+          <h2>Class Material</h2>
+        </div>
+        <span class="tab-number">tudo que você precisa pra estudar entre as aulas</span>
+      </div>
+      <div class="material-grid">
+        <a href="#" class="material-card">
+          <span class="material-icon">E</span>
+          <h3>eBook</h3>
+          <p>Apostilas e listas de vocabulário pra baixar e revisar.</p>
+        </a>
+        <a href="#" class="material-card">
+          <span class="material-icon">A</span>
+          <h3>Áudio</h3>
+          <p>Faixas de listening e pronúncia gravadas pra praticar o ouvido.</p>
+        </a>
+        <a href="#" class="material-card">
+          <span class="material-icon">V</span>
+          <h3>Vídeo</h3>
+          <p>Aulas gravadas e explicações rápidas de gramática.</p>
+        </a>
+        <div class="material-photo"><span>material da aula</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTIVITIES -->
+  <section id="activities" class="rule-top">
+    <div class="wrap">
+      <div class="activities">
+        <div class="activities-photo">foto da atividade</div>
+        <div>
+          <div class="section-head" style="margin-bottom:24px;">
+            <div>
+              <span class="eyebrow">unit 02</span>
+              <h2>Activities</h2>
+            </div>
+          </div>
+          <div class="activity-cards">
+            <div class="activity-card">
+              <span class="stamp">HW</span>
+              <h3>Homework<br>book</h3>
+              <p>Exercícios pra fixar o que vimos em aula.</p>
+            </div>
+            <div class="activity-card">
+              <span class="stamp">Q</span>
+              <h3>Quiz!</h3>
+              <p>Testes rápidos pra medir o progresso.</p>
+            </div>
+            <div class="activity-card">
+              <span class="stamp">+</span>
+              <h3>Extra<br>activities</h3>
+              <p>Jogos e desafios extras, se der vontade de mais.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG + ABOUT -->
+  <section id="blog" class="rule-top">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <span class="eyebrow">unit 03</span>
+          <h2>Blog + extra content</h2>
+          <div class="blog-photo"></div>
+          <ul class="post-list">
+            <li>
+              <a href="#">5 erros comuns de pronúncia (e como corrigir)</a>
+              <div class="meta">gramática · 4 min</div>
+            </li>
+            <li>
+              <a href="#">Phrasal verbs que todo mundo usa e ninguém aprende</a>
+              <div class="meta">vocabulário · 6 min</div>
+            </li>
+            <li>
+              <a href="#">Como manter a rotina de inglês fora da aula</a>
+              <div class="meta">dicas de estudo · 3 min</div>
+            </li>
+          </ul>
+        </div>
+        <div id="about">
+          <span class="eyebrow">unit 04</span>
+          <h2>About me</h2>
+          <div class="about-photo"></div>
+          <p>Oi, eu sou a Ju! Ensino inglês há alguns anos com aulas particulares feitas sob medida — sem apostila genérica, sem enrolação. A ideia aqui é juntar o que você precisa aprender com o jeito que você aprende melhor.</p>
+          <p>Fora da sala de aula, gosto de estudar novos jeitos de ensinar e trocar figurinha com os alunos sobre séries, livros e música em inglês.</p>
+          <p class="signature">— see you in class!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="#top" class="logo" style="justify-content:center;">
+      <span class="logo-mark">Ju</span>
+      Teacher Ju
+    </a>
+    <p>feito com ♡ e caneta azul, pra quem quer aprender inglês de verdade.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var TIMES = ["08:00","09:00","10:00","14:00","15:00","16:00","19:00","20:00"];
+  var DAYS = ["seg","ter","qua","qui","sex","sab"];
+  var DAY_LABEL = {seg:"Segunda", ter:"Terça", qua:"Quarta", qui:"Quinta", sex:"Sexta", sab:"Sábado"};
+
+  // ##########################################################
+  // ##  COLE SEU TOKEN DO GITHUB NA LINHA LOGO ABAIXO   ##
+  // ##  (substitua SEUTOKENAQUI, mantendo as aspas)          ##
+  // ##########################################################
+  const GH_TOKEN  = "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";
+  // ##########################################################
+  // NUNCA compartilhe esse arquivo já preenchido em chat, e-mail
+  // etc. Se desconfiar que alguém viu o token, revogue e gere
+  // um novo no GitHub imediatamente.
+  // ##########################################################
+
+  // Configuração do repositório — não precisa mexer aqui
+  const GH_OWNER  = "luckheleno";
+  const GH_REPO   = "site-aula-de-ingles";
+  const GH_BRANCH = "main"; // confirme se é esse o nome do branch publicado no GitHub Pages
+  const GH_PATH   = "grade.json";
+
+  // Dado usado só se o grade.json ainda não existir no repositório
+  // (primeira vez que a página é publicada com esse sistema).
+  const GRADE_FALLBACK = {
+    "08:00": { seg: "", ter: "", qua: "", qui: "", sex: "", sab: "" },
+    "09:00": { seg: "", ter: "", qua: "", qui: "", sex: "", sab: "" },
+    "10:00": { seg: "", ter: "", qua: "", qui: "", sex: "", sab: "" },
+    "14:00": { seg: "", ter: "", qua: "", qui: "", sex: "", sab: "" },
+    "15:00": { seg: "", ter: "", qua: "", qui: "", sex: "", sab: "" },
+    "16:00": { seg: "", ter: "", qua: "", qui: "", sex: "", sab: "" },
+    "19:00": { seg: "", ter: "", qua: "", qui: "", sex: "", sab: "" },
+    "20:00": { seg: "", ter: "", qua: "", qui: "", sex: "", sab: "" }
+  };
+
+  function cloneGrade(src){
+    var g = {};
+    TIMES.forEach(function(t){
+      g[t] = {};
+      DAYS.forEach(function(d){ g[t][d] = (src[t] && src[t][d]) ? src[t][d] : ""; });
+    });
+    return g;
+  }
+
+  function b64EncodeUnicode(str){
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+  function b64DecodeUnicode(str){
+    return decodeURIComponent(escape(atob(str)));
+  }
+
+  var tbody = document.getElementById('grade-body');
+  var statusEl = document.getElementById('grade-status');
+  var btnEdit = document.getElementById('btn-edit');
+  var btnSave = document.getElementById('btn-save');
+  var btnCancel = document.getElementById('btn-cancel');
+
+  var currentGrade = cloneGrade(GRADE_FALLBACK);
+  var currentSha = null; // "versão" do arquivo no GitHub, exigida pra atualizar
+  var editing = false;
+
+  function apiUrl(){
+    return "https://api.github.com/repos/" + GH_OWNER + "/" + GH_REPO + "/contents/" + GH_PATH + "?ref=" + GH_BRANCH;
+  }
+
+  function renderGrade(grade){
+    tbody.innerHTML = "";
+    TIMES.forEach(function(t){
+      var tr = document.createElement('tr');
+      var tdTime = document.createElement('td');
+      tdTime.className = 'time-col';
+      tdTime.textContent = t;
+      tr.appendChild(tdTime);
+      DAYS.forEach(function(d){
+        var td = document.createElement('td');
+        td.className = 'cell';
+        td.dataset.time = t;
+        td.dataset.day = d;
+        td.contentEditable = editing ? "true" : "false";
+        td.textContent = (grade[t] && grade[t][d]) ? grade[t][d] : "";
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+  }
+
+  function readGradeFromDOM(){
+    var grade = cloneGrade({});
+    tbody.querySelectorAll('td.cell').forEach(function(td){
+      var t = td.dataset.time, d = td.dataset.day;
+      grade[t][d] = td.textContent.trim();
+    });
+    return grade;
+  }
+
+  function setButtonsBusy(busy){
+    btnSave.disabled = busy;
+    btnCancel.disabled = busy;
+  }
+
+  // Busca a grade mais atual direto do GitHub, pra qualquer visitante ver a mesma coisa
+  function loadGradeFromGitHub(){
+    statusEl.textContent = "carregando grade...";
+    fetch(apiUrl(), {
+      headers: { "Accept": "application/vnd.github+json" }
+    })
+    .then(function(res){
+      if(res.status === 404){
+        // grade.json ainda não existe no repositório — usa o fallback
+        currentSha = null;
+        currentGrade = cloneGrade(GRADE_FALLBACK);
+        statusEl.textContent = "grade ainda não publicada — mostrando padrão";
+        renderGrade(currentGrade);
+        return null;
+      }
+      if(!res.ok) throw new Error("Falha ao buscar grade (" + res.status + ")");
+      return res.json();
+    })
+    .then(function(data){
+      if(!data) return;
+      currentSha = data.sha;
+      var decoded = JSON.parse(b64DecodeUnicode(data.content));
+      currentGrade = cloneGrade(decoded);
+      statusEl.textContent = "grade atualizada";
+      renderGrade(currentGrade);
+    })
+    .catch(function(err){
+      console.error(err);
+      statusEl.textContent = "não consegui carregar a grade agora — tente recarregar a página";
+      renderGrade(currentGrade);
+    });
+  }
+
+  btnEdit.addEventListener('click', function(){
+    editing = true;
+    renderGrade(currentGrade);
+    btnEdit.style.display = 'none';
+    btnSave.style.display = 'inline-block';
+    btnCancel.style.display = 'inline-block';
+    statusEl.textContent = "modo edição — clique nas células pra escrever";
+  });
+
+  btnCancel.addEventListener('click', function(){
+    editing = false;
+    renderGrade(currentGrade);
+    btnEdit.style.display = 'inline-block';
+    btnSave.style.display = 'none';
+    btnCancel.style.display = 'none';
+    statusEl.textContent = "edição cancelada";
+  });
+
+  btnSave.addEventListener('click', function(){
+    var grade = readGradeFromDOM();
+
+    if(GH_TOKEN === "COLE_SEU_TOKEN_AQUI"){
+      statusEl.textContent = "token do GitHub não configurado neste arquivo — não dá pra salvar";
+      return;
+    }
+
+    setButtonsBusy(true);
+    statusEl.textContent = "salvando...";
+
+    var body = {
+      message: "Atualiza grade de aulas pelo site",
+      content: b64EncodeUnicode(JSON.stringify(grade, null, 2)),
+      branch: GH_BRANCH
+    };
+    if(currentSha) body.sha = currentSha; // exigido só quando o arquivo já existe
+
+    fetch(apiUrl().split("?")[0], {
+      method: "PUT",
+      headers: {
+        "Accept": "application/vnd.github+json",
+        "Authorization": "Bearer " + GH_TOKEN,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    })
+    .then(function(res){
+      if(!res.ok) return res.json().then(function(e){ throw new Error(e.message || ("Erro " + res.status)); });
+      return res.json();
+    })
+    .then(function(data){
+      currentSha = data.content.sha;
+      currentGrade = grade;
+      statusEl.textContent = "grade salva! já atualizada pra todo mundo";
+      editing = false;
+      renderGrade(currentGrade);
+      btnEdit.style.display = 'inline-block';
+      btnSave.style.display = 'none';
+      btnCancel.style.display = 'none';
+      setButtonsBusy(false);
+    })
+    .catch(function(err){
+      console.error(err);
+      statusEl.textContent = "não consegui salvar: " + err.message;
+      setButtonsBusy(false);
+    });
+  });
+
+  renderGrade(currentGrade);
+  loadGradeFromGitHub();
+})();
+</script>
+
+</body>
+</html>
